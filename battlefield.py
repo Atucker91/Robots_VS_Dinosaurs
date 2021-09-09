@@ -22,6 +22,7 @@ class Battlefield:
 
     def dino_turn(self, dinosaur):
         dinosaur.attack(self.fleet.robots[0])
+        self.show_dino_opponent_options()
 
     def robo_turn(self, robot):
         pass
@@ -31,12 +32,29 @@ class Battlefield:
             "Robo turn: What would you like to do:\n Enter H for health check or A for attack "
         )
 
-        if option == h:
-            input(
-                "Which robo would you like to check?\n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3"
+        if option == "h":
+            player_choice = input(
+                "Which player would you like to check?\n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3 \n 4 for Dino1, 5 for Dino2, 6 for Dino3 "
             )
-        elif option == a:
-            pass
+            if player_choice == "1":
+                print("Robo1 health is: ", self.fleet.robots[0].health)
+            elif player_choice == "2":
+                print(self.fleet.robots[1].health)
+            elif player_choice == "3":
+                print(self.fleet.robots[2].health)
+            elif player_choice == "4":
+                print(self.herd.dinosaurs[0].health)
+            elif player_choice == "5":
+                print(self.herd.dinosaurs[1].health)
+            elif player_choice == "6":
+                print(self.herd.dinosaurs[2].health)
+            else:
+                player_choice = input(
+                    "Invalid selection, please try again \n Which player would you like to check? \n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3, 4 for Dino1, 5 for Dino2, 6 for Dino3 "
+                )
+
+        elif option == "a":
+            self.robo_turn()
 
     def show_robo_opponent_options(self):
         pass
