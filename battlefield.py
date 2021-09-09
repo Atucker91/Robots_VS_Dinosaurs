@@ -13,12 +13,31 @@ class Battlefield:
 
     def run_game(self):
         turn = "dino"
+        self.display_welcome()
         self.battle(turn)
 
     def display_welcome(self):
-        pass
+        print("Battle of robots VS dinosaurs will begin")
+        self.run_game
 
     def battle(self, turn):
+        winner = ""
+
+        if (
+            self.fleet.robots[0].health < 0
+            and self.fleet.robots[1].health < 0
+            and self.fleet.robots[2].health < 0
+        ):
+            winner = "dino"
+            self.display_winners(winner)
+        elif (
+            self.herd.dinosaurs[0].health < 0
+            and self.herd.dinosaurs[1].health < 0
+            and self.herd.dinosaurs[2].health < 0
+        ):
+            winner = "robo"
+            self.display_winners(winner)
+
         if turn == "dino":
             self.show_robo_opponent_options()
         elif turn == "robo":
@@ -126,5 +145,8 @@ class Battlefield:
             elif attacker_choice == "3":
                 self.dino_turn(self.herd.dinosaurs[2])
 
-    def display_winners(self):
-        pass
+    def display_winners(self, winner):
+        if winner == "dino":
+            print("All Robots Have Been Defeated, Dinosaurs Win!")
+        elif winner == "robo":
+            print("All Dinosaurs Have Been Defeated, Robots Win!")
