@@ -1,11 +1,21 @@
+from fleet import Fleet
+from herd import Herd
+from herd import Herd
+from robot import Robot
+from weapon import Weapon
+from dinosaur import Dinosaur
+
+
 class Battlefield:
     def __init__(self):
-        self.fleet = {}
-        self.herd = {}
-    
+        self.fleet = Fleet()
+        self.herd = Herd()
+
     def run_game(self):
-        pass
-    
+
+        self.fleet.create_fleet()
+        self.herd.create_herd()
+
     def display_welcome(self):
         pass
 
