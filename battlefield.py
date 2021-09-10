@@ -18,7 +18,6 @@ class Battlefield:
 
     def display_welcome(self):
         print("Battle of robots VS dinosaurs will begin")
-        self.run_game
 
     def battle(self, turn):
         winner = ""
