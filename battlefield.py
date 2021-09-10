@@ -44,106 +44,144 @@ class Battlefield:
             self.show_dino_opponent_options()
 
     def dino_turn(self, dinosaur):
+        player_choice = ""
         player_choice = input(
-            "Which Robot would you like to attack?\n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3 "
+            "Which Robot would you like to attack?\nEnter 1 for Robo1: Health= ",
+            self.fleet.robots[0].health,
+            "\n2 for Robo2: Health= ",
+            self.fleet.robots[1].health,
+            "\n3 for Robo3: Health= ",
+            self.fleet.robots[2].health,
         )
         if player_choice == "1":
             dinosaur.attack(self.fleet.robots[0])
+            print(
+                "Damage inflicted! Robo1 now has ",
+                self.fleet.robots[0].health,
+                " points of health",
+            )
             self.battle("robo")
         elif player_choice == "2":
             dinosaur.attack(self.fleet.robots[1])
+            print(
+                "Damage inflicted! Robo2 now has ",
+                self.fleet.robots[1].health,
+                " points of health",
+            )
             self.battle("robo")
         elif player_choice == "3":
             dinosaur.attack(self.fleet.robots[3])
+            print(
+                "Damage inflicted! Robo3 now has ",
+                self.fleet.robots[2].health,
+                " points of health",
+            )
             self.battle("robo")
 
     def robo_turn(self, robot):
+        player_choice = ""
         player_choice = input(
-            "Which Dinosaur would you like to attack?\n Enter 1 for Dino1, 2 for Dino2, 3 for Dino3 "
+            "Which Dinosaur would you like to attack?\nEnter 1 for Dino1: Health= ",
+            self.herd.dinosaurs[0].health,
+            "\n2 for Dino2: Health= ",
+            self.herd.dinosaurs[1].health,
+            "\n3 for Dino3: Health= ",
+            self.herd.dinosaurs[2].health,
         )
         if player_choice == "1":
             robot.attack(self.herd.dinosaurs[0])
+            print(
+                "Damage inflicted! Dino1 now has ",
+                self.herd.dinosaurs[0].health,
+                " points of health",
+            )
             self.battle("dino")
         elif player_choice == "2":
             robot.attack(self.herd.dinosaurs[1])
+            print(
+                "Damage inflicted! Dino2 now has ",
+                self.herd.dinosaurs[1].health,
+                " points of health",
+            )
             self.battle("dino")
         elif player_choice == "3":
             robot.attack(self.herd.dinosaurs[2])
+            print(
+                "Damage inflicted! Dino3 now has ",
+                self.herd.dinosaurs[2].health,
+                " points of health",
+            )
             self.battle("dino")
 
     def show_dino_opponent_options(self):
-        option = input(
-            "Robo turn: What would you like to do:\n Enter H for health check or A for attack "
+
+        attacker_choice = "1"
+
+        print(
+            "Team Health:\nRobo1: Health= ",
+            self.fleet.robots[0].health,
+            "\nRobo2: Health= ",
+            self.fleet.robots[1].health,
+            "\nRobo3: Health= ",
+            self.fleet.robots[2].health,
         )
 
-        if option == "h":
-            player_choice = input(
-                "Which player would you like to check?\n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3 \n 4 for Dino1, 5 for Dino2, 6 for Dino3 "
-            )
-            if player_choice == "1":
-                print("Robo1 health is: ", self.fleet.robots[0].health)
-            elif player_choice == "2":
-                print("Robo2 health is: ", self.fleet.robots[1].health)
-            elif player_choice == "3":
-                print("Robo3 health is: ", self.fleet.robots[2].health)
-            elif player_choice == "4":
-                print("Dino1 health is: ", self.herd.dinosaurs[0].health)
-            elif player_choice == "5":
-                print("Dino2 health is: ", self.herd.dinosaurs[1].health)
-            elif player_choice == "6":
-                print("Dino3 health is: ", self.herd.dinosaurs[2].health)
-            else:
-                player_choice = input(
-                    "Invalid selection, please try again \n Which player would you like to check? \n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3, 4 for Dino1, 5 for Dino2, 6 for Dino3 "
-                )
-
-        elif option == "a":
+        while (
+            attacker_choice == "1" or attacker_choice == "2" or attacker_choice == "3"
+        ):
             attacker_choice = input(
-                "Which Robot do you want to attack with? \n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3"
+                "Which Robot do you want to attack with? \n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3: "
             )
             if attacker_choice == "1":
-                self.robo_turn(self.fleet.robots[0])
+                if self.fleet.robots[0].health > 0:
+                    self.robo_turn(self.fleet.robots[0])
+                else:
+                    print("Robo1 has been defeated, please choose another Robot")
             elif attacker_choice == "2":
-                self.robo_turn(self.fleet.robots[1])
+                if self.fleet.robots[1].health > 0:
+                    self.robo_turn(self.fleet.robots[1])
+                else:
+                    print("Robo2 has been defeated, please choose another Robot")
             elif attacker_choice == "3":
-                self.robo_turn(self.fleet.robots[2])
+                if self.fleet.robots[2].health > 0:
+                    self.robo_turn(self.fleet.robots[2])
+                else:
+                    print("Robo3 has been defeated, please choose another Robot")
 
     def show_robo_opponent_options(self):
-        option = input(
-            "Dino turn: What would you like to do:\n Enter H for health check or A for attack "
+
+        attacker_choice = "1"
+
+        print(
+            "Team Health\nDino1: Health= ",
+            self.herd.dinosaurs[0].health,
+            "\nDino2: Health= ",
+            self.herd.dinosaurs[1].health,
+            "\nDino3: Health= ",
+            self.herd.dinosaurs[2].health,
         )
 
-        if option == "h":
-            player_choice = input(
-                "Which player would you like to check?\n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3 \n 4 for Dino1, 5 for Dino2, 6 for Dino3 "
-            )
-            if player_choice == "1":
-                print("Robo1 health is: ", self.fleet.robots[0].health)
-            elif player_choice == "2":
-                print("Robo2 health is: ", self.fleet.robots[1].health)
-            elif player_choice == "3":
-                print("Robo3 health is: ", self.fleet.robots[2].health)
-            elif player_choice == "4":
-                print("Dino1 health is: ", self.herd.dinosaurs[0].health)
-            elif player_choice == "5":
-                print("Dino2 health is: ", self.herd.dinosaurs[1].health)
-            elif player_choice == "6":
-                print("Dino3 health is: ", self.herd.dinosaurs[2].health)
-            else:
-                player_choice = input(
-                    "Invalid selection, please try again \n Which player would you like to check? \n Enter 1 for Robo1, 2 for Robo2, 3 for Robo3, 4 for Dino1, 5 for Dino2, 6 for Dino3 "
-                )
-
-        elif option == "a":
+        while (
+            attacker_choice == "1" or attacker_choice == "2" or attacker_choice == "3"
+        ):
             attacker_choice = input(
-                "Which Dinosaur do you want to attack with? \n Enter 1 for Dino1, 2 for Dino2, 3 for Dino3"
+                "Which Dinosaur do you want to attack with? \n Enter 1 for Dino1, 2 for Dino2, 3 for Dino3: "
             )
             if attacker_choice == "1":
-                self.dino_turn(self.herd.dinosaurs[0])
+                if self.herd.dinosaurs[0].health > 0:
+                    self.dino_turn(self.herd.dinosaurs[0])
+                else:
+                    print("Dino1 has been defeated, please choose another Dinosaur")
             elif attacker_choice == "2":
-                self.dino_turn(self.herd.dinosaurs[1])
+                if self.herd.dinosaurs[1].health > 0:
+                    self.dino_turn(self.herd.dinosaurs[1])
+                else:
+                    print("Dino2 has been defeated, please choose another Dinosaur")
             elif attacker_choice == "3":
-                self.dino_turn(self.herd.dinosaurs[2])
+                if self.herd.dinosaurs[2].health > 0:
+                    self.dino_turn(self.herd.dinosaurs[2])
+                else:
+                    print("Dino3 has been defeated, please choose another Dinosaur")
 
     def display_winners(self, winner):
         if winner == "dino":
