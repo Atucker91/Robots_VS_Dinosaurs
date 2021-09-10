@@ -69,7 +69,7 @@ class Battlefield:
             )
             self.battle("robo")
         elif player_choice == "3":
-            dinosaur.attack(self.fleet.robots[3])
+            dinosaur.attack(self.fleet.robots[2])
             print(
                 "Damage inflicted! Robo3 now has ",
                 self.fleet.robots[2].health,
