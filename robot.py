@@ -11,9 +11,9 @@ class Robot:
         weapon_option = input(
             "What weapon would you like to use to attack with? \nEnter 1 for Saber, 2 for Lazer, 3 for Rocket: "
         )
-        if weapon_option == 1:
+        if weapon_option == "1":
             dinosaur.health = dinosaur.health - self.weapon[0].attack_power
-        elif weapon_option == 2:
+        elif weapon_option == "2":
             dinosaur.health = dinosaur.health - self.weapon[1].attack_power
-        elif weapon_option == 3:
+        elif weapon_option == "3":
             dinosaur.health = dinosaur.health - self.weapon[2].attack_power
