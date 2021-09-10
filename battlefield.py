@@ -44,15 +44,15 @@ class Battlefield:
             self.show_dino_opponent_options()
 
     def dino_turn(self, dinosaur):
-        player_choice = ""
-        player_choice = input(
-            "Which Robot would you like to attack?\nEnter 1 for Robo1: Health= ",
+        print(
+            "Which Robot would you like to attack?\nRobo1: Health= ",
             self.fleet.robots[0].health,
-            "\n2 for Robo2: Health= ",
+            "\nRobo2: Health= ",
             self.fleet.robots[1].health,
-            "\n3 for Robo3: Health= ",
+            "\nRobo3: Health= ",
             self.fleet.robots[2].health,
         )
+        player_choice = input("Enter 1 for Robo1\n2 for Robo2\n3 for Robo3")
         if player_choice == "1":
             dinosaur.attack(self.fleet.robots[0])
             print(
@@ -79,15 +79,15 @@ class Battlefield:
             self.battle("robo")
 
     def robo_turn(self, robot):
-        player_choice = ""
-        player_choice = input(
-            "Which Dinosaur would you like to attack?\nEnter 1 for Dino1: Health= ",
+        print(
+            "Which Dinosaur would you like to attack?\nDino1: Health= ",
             self.herd.dinosaurs[0].health,
-            "\n2 for Dino2: Health= ",
+            "\nDino2: Health= ",
             self.herd.dinosaurs[1].health,
-            "\n3 for Dino3: Health= ",
+            "\nDino3: Health= ",
             self.herd.dinosaurs[2].health,
         )
+        player_choice = input("Enter 1 for Dino1\n2 for Dino2\n3 for Dino3")
         if player_choice == "1":
             robot.attack(self.herd.dinosaurs[0])
             print(
