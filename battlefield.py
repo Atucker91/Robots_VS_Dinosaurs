@@ -28,6 +28,7 @@ class Battlefield:
             and self.fleet.robots[2].health < 0
         ):
             winner = "dino"
+            turn = ""
             self.display_winners(winner)
         elif (
             self.herd.dinosaurs[0].health < 0
@@ -35,6 +36,7 @@ class Battlefield:
             and self.herd.dinosaurs[2].health < 0
         ):
             winner = "robo"
+            turn = ""
             self.display_winners(winner)
 
         if turn == "dino":
